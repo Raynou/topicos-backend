@@ -16,7 +16,8 @@
     "dotenv": "^16.1.3",
     "express": "^4.18.2",
     "mysql2": "^3.3.3",
-    "sequelize": "^6.32.0"
+    "sequelize": "^6.32.0",
+    "sequelize-auto": "^0.8.8"
   },
   "devDependencies": {
     "jest": "^29.5.0",
