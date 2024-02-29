@@ -1,6 +1,6 @@
 const { sequelize } = require("../connection.js");
 
-test("Connection to database is workin", async () => {
+test("Connection to database is working", async () => {
   const res = await connectionTest();
   expect(res).toBe(true);
 });
@@ -11,6 +11,7 @@ const connectionTest = async () => {
     await sequelize.close();
     return true;
   } catch (e) {
+    console.error(e);
     return false;
   }
 };

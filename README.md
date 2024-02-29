@@ -1,6 +1,6 @@
 # Topicos-backend
 
-1. Crear un archivo de variables de entorno `.env` en la carpeta raíz del proyecto, una vez hecho esto crear las siguientes variables de entorno: `DB_PASSWORD`, `DB_NAME`, `DB_USER`.
+1. Crear un archivo de variables de entorno `.env` en la carpeta raíz del proyecto, una vez hecho esto crear las siguientes variables de entorno: `DB_PASSWORD`, `DB_NAME`, `DB_USER`. El nombre de la base de datos debe de ser `TOPICOS_DB`.
 2. Ejecutar el comando `npm install`.
 3. Ejecutar los test con `npm run test` (solo si ya se tiene el esquema de base de datos creado).
 
