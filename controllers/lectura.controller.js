@@ -1,5 +1,6 @@
 const service = require("../services/lectura.service.js");
 const { Request, Response } = require("express");
+const { NoFieldProvided } = require("../errors/NoFieldProvided.js");
 
 /**
  * @param {Request} req
@@ -25,11 +26,21 @@ async function getLecturaById(req, res) {
  */
 async function createLectura(req, res) {
   try {
+    const body = req.body;
+    const fields = ["arduino", "latitud", "longitud", "rotacion", "aceleracion"];
+    fields.forEach(field => {
+      if(!body[field]) {
+        throw new NoFieldProvided(field);
+      }
+    });
     await service.createLectura(req.body);
     res.sendStatus(201);
   } catch (e) {
-    console.log(e);
-    res.sendStatus(400);
+    res.status(400);
+    res.json({
+      error: e.message,
+    });
+    res.end();
   }
 }
 
@@ -46,5 +57,5 @@ module.exports = {
   getLectura,
   getLecturaById,
   createLectura,
-  test
+  test,
 };

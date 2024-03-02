@@ -3,8 +3,8 @@ const models = require("../models/init-models.js").initModels(sequelize);
 
 async function findAllArduinos() {
   const response = await models.ARDUINO.findAll();
-  const users = response.map((data) => data.dataValues);
-  return users;
+  const arduinos = response.map((data) => data.dataValues);
+  return arduinos;
 }
 
 async function findArduinoById(id) {
@@ -14,6 +14,6 @@ async function findArduinoById(id) {
 }
 
 module.exports = {
-  findAllUsuarios,
-  findUserById
+  findAllArduinos,
+  findArduinoById
 };
