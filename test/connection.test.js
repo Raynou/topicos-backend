@@ -1,4 +1,4 @@
-const { sequelize } = require("../connection.js");
+const { sequelize } = require("./src/connection.js");
 
 test("Connection to database is working", async () => {
   const res = await connectionTest();

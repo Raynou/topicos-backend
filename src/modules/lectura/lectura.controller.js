@@ -1,6 +1,6 @@
-const service = require("../services/lectura.service.js");
+const service = require("./lectura.service.js");
 const { Request, Response } = require("express");
-const { NoFieldProvided } = require("../errors/NoFieldProvided.js");
+const { NoFieldProvided } = require("../../shared/errors/NoFieldProvided.js");
 
 /**
  * @param {Request} req
