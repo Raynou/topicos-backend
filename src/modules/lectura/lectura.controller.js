@@ -50,6 +50,7 @@ async function createLectura(req, res) {
  */
 async function test(req, res) {
   console.log("Este wey envió una ruta al controlador de la lectura");
+  await service.testService();
   res.end();
 }
 
