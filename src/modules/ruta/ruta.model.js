@@ -16,11 +16,19 @@ class RUTA extends Sequelize.Model {
       type: DataTypes.STRING(255),
       allowNull: false
     },
-    punto_inicial: {
+    punto_inicial_lat: {
       type: DataTypes.STRING(255),
       allowNull: false
     },
-    punto_final: {
+    punto_inicial_lon: {
+      type: DataTypes.STRING(255),
+      allowNull: false
+    },
+    punto_final_lat: {
+      type: DataTypes.STRING(255),
+      allowNull: false
+    },
+    punto_final_lon: {
       type: DataTypes.STRING(255),
       allowNull: false
     }

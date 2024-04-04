@@ -3,7 +3,8 @@ USE TOPICOS_DB;
 -- estar sujetos a cambios
 
 START TRANSACTION;
-    INSERT INTO RUTA (nombre, punto_inicial, punto_final) VALUES ('Tampico Playa', '1', '1');
+    INSERT INTO RUTA (nombre, punto_inicial_lat, punto_final_lon, punto_final_lat, punto_final_lon) VALUES 
+    ('Tampico Playa', '1.0', '1.0', '1.0', '1.0');
     INSERT INTO ARDUINO (ruta, numero_unidad) VALUES (1, 1);
 COMMIT;
 

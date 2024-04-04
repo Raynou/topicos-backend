@@ -2,32 +2,34 @@ CREATE SCHEMA IF NOT EXISTS TOPICOS_DB;
 USE TOPICOS_DB;
 
 CREATE TABLE IF NOT EXISTS ARDUINO(
-    id                      INT PRIMARY KEY AUTO_INCREMENT,
-    ruta                    INT NOT NULL,
-    numero_unidad           INT NOT NULL 
+    id                          INT PRIMARY KEY AUTO_INCREMENT,
+    ruta                        INT NOT NULL,
+    numero_unidad               INT NOT NULL 
 );
 
 CREATE TABLE IF NOT EXISTS LECTURA(
-    id                      INT PRIMARY KEY AUTO_INCREMENT,
-    arduino                 INT NOT NULL,
-    latitud                 VARCHAR(255) NOT NULL,
-    longitud                VARCHAR(255) NOT NULL,
-    rotacion                VARCHAR(255) NOT NULL,
-    aceleracion             VARCHAR(255) NOT NULL
+    id                          INT PRIMARY KEY AUTO_INCREMENT,
+    arduino                     INT NOT NULL,
+    latitud                     VARCHAR(255) NOT NULL,
+    longitud                    VARCHAR(255) NOT NULL,
+    rotacion                    VARCHAR(255) NOT NULL,
+    aceleracion                 VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS RUTA(
-    id                      INT PRIMARY KEY AUTO_INCREMENT,
-    nombre                  VARCHAR(255) NOT NULL,
-    punto_inicial           VARCHAR(255) NOT NULL,
-    punto_final             VARCHAR(255) NOT NULL
+    id                          INT PRIMARY KEY AUTO_INCREMENT,
+    nombre                      VARCHAR(255) NOT NULL,
+    punto_inicial_lat           VARCHAR(255) NOT NULL,
+    punto_inicial_lon           VARCHAR(255) NOT NULL,
+    punto_final_lat             VARCHAR(255) NOT NULL
+    punto_final_lon             VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS PUNTO_DE_CONTROL(
-    id                      INT PRIMARY KEY AUTO_INCREMENT,
-    ruta                    INT NOT NULL,
-    latitud                 VARCHAR(255) NOT NULL,
-    longitud                VARCHAR(255) NOT NULL
+    id                          INT PRIMARY KEY AUTO_INCREMENT,
+    ruta                        INT NOT NULL,
+    latitud                     VARCHAR(255) NOT NULL,
+    longitud                    VARCHAR(255) NOT NULL
 );
 
 -- Constraints

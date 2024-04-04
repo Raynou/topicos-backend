@@ -1,0 +1,98 @@
+paths:
+
+  /puntoDeControl:
+
+    get:
+      summary: Obtiene la lista de todos los puntos de control existentes
+      description: Devuelve todos los puntos de control en la base de datos
+      tags:
+        - Punto de control
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Una lista de puntos de control
+          schema:
+            $ref: '#/definitions/PuntoDeControl'
+        500:
+          description: Un objeto con mensaje de error
+          schema:
+            $ref: '#/definitions/Error'
+
+    post:
+      summary: Crea un punto de control
+      description: Crea un punto de control en una ruta dada
+      tags:
+        - Punto de control
+      parameters:
+        - in: body
+          name: Punto de control
+          required: true
+          schema:
+            $ref: '#/definitions/NewPuntoDeControl'
+      responses:
+        201:
+          description: Punto de control creado exitosamente
+        400:
+          description: Mensaje especificando el error al momento de enviar la solicitud http
+          schema:
+            $ref: '#/definitions/Error'
+
+    put:
+      summary: Actualiza un punto de control
+      description: Actualiza un punto de control de una ruta
+      parameters:
+        - in: body
+          name: Punto de control actualizado
+          description: Un punto de control existente con los valores de latitud y/o longitud actualizados. En caso de que se proporcione una id no existente se devolverá un mensaje de error.
+          required: true
+          schema:
+            $ref: '#/definitions/PuntoDeControl'
+      tags:
+        - Punto de control
+      produces: application/json
+      responses:
+        204:
+          description: Respuesta vacía
+        400:
+          description: Objeto con mensaje de error
+          schema:
+            $ref: '#/definitions/Error'
+
+    delete:
+      summary: Elimina un punto de control
+      description: Elimina un punto de control de una ruta
+      tags:
+        - Punto de control
+      parameters:
+        - in: path
+          name: Id del punto de control
+          required: true
+      produces:
+        - application/json
+      responses:
+        204:
+          description: Respuesta vacía
+        400:
+          description: Un objeto con mensaje de error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /puntoDeControl/{id}:
+
+    get:
+      summary: Obtiene un punto de control en base a su id
+      description: Devuelve la información de un punto de control dada una id
+      tags:
+        - Punto de control
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Un objeto que representa el punto de control solicitado
+          schema:
+            $ref: '#/definitions/PuntoDeControl'
+        400:
+          description: Un objeto con un mensaje de error
+          schema:
+            $ref: '#/definitions/Error'

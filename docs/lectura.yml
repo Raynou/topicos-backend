@@ -1,0 +1,62 @@
+paths:
+
+  /lectura:
+
+    get:
+      summary: Obtiene todas las lecturas
+      description: Devuelve todas las lecturas existentes en la base de datos.
+      tags: 
+        - Lectura
+      responses:
+        200:
+          description: Una lista de lecturas.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Lectura'
+        500:
+          description: Error interno del servidor cometido al momento de hacer la petición http.
+          schema:
+            $ref: '#/definitions/Error'
+
+    post:
+      summary: Crea una lectura
+      description: Crea una lectura en la base de datos.
+      tags: 
+        - Lectura
+      parameters:
+        - in: body
+          name: Lectura
+          required: true
+          schema:
+            $ref: '#/definitions/Lectura'
+      responses:
+        201:
+          description: Lectura creada exitosamente.
+        400:
+          description: Un objeto JSON espeficando el error al momento de realizar la petición. 
+
+  /lectura/{id}:
+
+    get:
+      summary: Obtiene una lectura en base a su id
+      description: Devuelve una lectura específica de la base de datos en base a su ID.
+      tags:
+        - Lectura
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID de la lectura que se desea obtener.
+      operationId: getLecturaById
+      responses:
+        200:
+          description: La lectura con el ID solicitado.
+          schema:
+            $ref: '#/definitions/Lectura'
+        400:
+          description: Un mensaje de error.
+          schema:
+            $ref: '#/definitions/Error'
