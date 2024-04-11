@@ -29,13 +29,25 @@ async function testService() {
  * mentioned events exists, the function will send via websockets
  * an alert to the clients.
  */
-function spawnEventHandler() {
+function spawnEventHandler(flag) {
   // TODO: Spawn Python desktop app
   const existsEvent = true;
+  const mockEvents = ["Rebaso", "Retraso"];
+  let random = Math.random();
+
+  // Test code
+  if (random > 0.5) {
+    random = Math.ceil(random);
+  } else {
+    random = Math.floor(random);
+  }
+
+  const event = mockEvents[random];
+
   if (existsEvent) {
     // TODO: Send via ws an alert to the clients
     ws.clients.forEach((client) => {
-      client.send("There's an event!");
+      client.send(event);
     });
   }
 }
@@ -44,5 +56,5 @@ module.exports = {
   findAllLecturas,
   findLecturaById,
   createLectura,
-  testService
+  testService,
 };
