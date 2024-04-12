@@ -1,4 +1,4 @@
-const service = require("./lectura.service.js");
+const service = require("./service.js");
 const { Request, Response } = require("express");
 const { NoFieldProvided } = require("../../shared/errors/NoFieldProvided.js");
 

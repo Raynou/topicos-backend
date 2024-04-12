@@ -1,5 +1,5 @@
 const { Router } = require("@awaitjs/express");
-const controller = require("./ruta.controller.js");
+const controller = require("./controller.js");
 
 const router = Router();
 

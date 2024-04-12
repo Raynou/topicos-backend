@@ -1,7 +1,7 @@
 const { Router } = require("express");
-const lecturaRouter = require("./modules/lectura/lectura.routes");
-const rutaRouter = require("./modules/ruta/ruta.routes");
-const puntoDeControlRouter = require("./modules/puntoDeControl/puntoDeControl.routes");
+const lecturaRouter = require("./modules/lectura/routes");
+const rutaRouter = require("./modules/ruta/routes");
+const puntoDeControlRouter = require("./modules/puntoDeControl/routes");
 const router = Router();
 
 router.use("/v1/lectura", lecturaRouter);

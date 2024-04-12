@@ -1,4 +1,4 @@
-const service = require("./puntoDeControl.service.js");
+const service = require("./service.js");
 const { Request, Response } = require("express");
 const { NoFieldProvided } = require("../../shared/errors/NoFieldProvided.js");
 

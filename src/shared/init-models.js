@@ -1,8 +1,8 @@
 const DataTypes = require("sequelize").DataTypes;
-const _ARDUINO = require("../modules/arduino/arduino.model");
-const _LECTURA = require("../modules/lectura/lectura.model");
-const _PUNTO_DE_CONTROL = require("../modules/puntoDeControl/puntoDeControl.model");
-const _RUTA = require("../modules/ruta/ruta.model");
+const _ARDUINO = require("../modules/arduino/model");
+const _LECTURA = require("../modules/lectura/model");
+const _PUNTO_DE_CONTROL = require("../modules/puntoDeControl/model");
+const _RUTA = require("../modules/ruta/model");
 
 function initModels(sequelize) {
   const ARDUINO = _ARDUINO(sequelize, DataTypes);
