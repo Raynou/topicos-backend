@@ -9,3 +9,11 @@
 En `database/schema.sql` esta la definción del esquema de base de datos. Este debe de ser ejecutado manualmente para crear el la base de datos localmente.
 
 Además, debe de ejecutar el archivo `seeder.sql` que se encuentra en la misma carpeta `database` para poblar las tablas `RUTA` y `ARDUINO`.
+
+# Uso de swagger
+
+Para acceder a la documentación de los endpoints vaya a la siguiente dirección:
+
+```bash
+localhost:3000/doc
+```
