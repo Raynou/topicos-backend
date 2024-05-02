@@ -1,37 +1,26 @@
 const express = require("express");
 const router = require("./routes.js");
 const cors = require("cors");
-const YAML = require("yamljs");
-// const swaggerDocument = YAML.load("./docs/lectura.routes.yml");
-const swaggerUI = require("swagger-ui-express");
-const swaggerJSDoc = require("swagger-jsdoc");
+const morgan = require("morgan");
 
 const app = express();
+const NODE_ENV = process.env.NODE_ENV;
+const PORT = process.env.PORT || 3000;
+const MORGAN_MODE = NODE_ENV === "production" ? "combined" : "dev";
 
-// Swagger definition
-const swaggerDefinition = {
-  info: {
-    title: "TSIN REST API",
-    version: "1.0.0",
-    description: "API REST para el proyecto de la materia de TSIN",
-  },
-  host: "localhost:3000", 
-  basePath: "/v1", 
-};
-
-const options = {
-  swaggerDefinition,
-  apis: ["./docs/**/*.yml"],
-};
-
-const swaggerDocument = swaggerJSDoc(options);
-
-// Middleware.
+// Middlewares.
+app.use(morgan(MORGAN_MODE));
 app.use(express.json());
 app.use(cors());
 app.use("/", router);
-app.use("/doc", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
-app.listen(3000, () => {
+// We hide Swagger's doc in production because expose it can incur in
+// vulnerabilities
+if (NODE_ENV === "development") {
+  const initSwagger = require("./swagger.config.js");
+  initSwagger(app);
+}
+
+app.listen(PORT, () => {
   console.log("App on port 3000");
 });
