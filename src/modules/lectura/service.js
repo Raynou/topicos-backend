@@ -1,5 +1,5 @@
 const { sequelize } = require("../../connection.js");
-const ws = require("../../ws-server.js");
+const ws = require("../../web-socket.js");
 const models = require("../../shared/init-models.js").initModels(sequelize);
 
 async function findAllLecturas() {
@@ -46,9 +46,7 @@ function spawnEventHandler(flag) {
 
   if (existsEvent) {
     // TODO: Send via ws an alert to the clients
-    ws.clients.forEach((client) => {
-      client.send(event);
-    });
+    ws.send(event);
   }
 }
 
