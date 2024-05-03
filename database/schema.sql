@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS RUTA(
     nombre                      VARCHAR(255) NOT NULL,
     punto_inicial_lat           VARCHAR(255) NOT NULL,
     punto_inicial_lon           VARCHAR(255) NOT NULL,
-    punto_final_lat             VARCHAR(255) NOT NULL
+    punto_final_lat             VARCHAR(255) NOT NULL,
     punto_final_lon             VARCHAR(255) NOT NULL
 );
 
