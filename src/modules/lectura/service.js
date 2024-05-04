@@ -32,7 +32,7 @@ async function testService() {
 function spawnEventHandler(flag) {
   // TODO: Spawn Python desktop app
   const existsEvent = true;
-  const mockEvents = ["Rebaso", "Retraso"];
+  const mockEvents = ["rebase", "retraso"];
   let random = Math.random();
 
   // Test code
@@ -46,6 +46,7 @@ function spawnEventHandler(flag) {
 
   if (existsEvent) {
     // TODO: Send via ws an alert to the clients
+    console.log(event);
     ws.send(event);
   }
 }
