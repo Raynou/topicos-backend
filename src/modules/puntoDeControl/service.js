@@ -13,6 +13,16 @@ async function findPuntoDeControlById(id) {
   return puntoDeControl;
 }
 
+async function findPuntoDeControlByRuta(ruta) {
+  const response = await models.PUNTO_DE_CONTROL.findAll({
+    where: {
+      ruta: ruta,
+    },
+  });
+  const puntosDeControl = response.dataValues;
+  return puntosDeControl;
+}
+
 async function createPuntoDeControl(puntoDeControl) {
   await models.PUNTO_DE_CONTROL.create(puntoDeControl);
 }
@@ -31,7 +41,8 @@ async function deletePuntoDeControl(id) {
 module.exports = {
   findAllPuntosDeControl,
   findPuntoDeControlById,
+  findPuntoDeControlByRuta,
   createPuntoDeControl,
   updatePuntoDeControl,
-  deletePuntoDeControl
+  deletePuntoDeControl,
 };

@@ -1,4 +1,6 @@
 const { sequelize } = require("../../connection.js");
+const { checkpoints } = require("../../shared/globals.js");
+const pdcService = require("../puntoDeControl/service.js");
 const ws = require("../../web-socket.js");
 const models = require("../../shared/init-models.js").initModels(sequelize);
 
@@ -29,8 +31,10 @@ async function testService() {
  * mentioned events exists, the function will send via websockets
  * an alert to the clients.
  */
-function spawnEventHandler(flag) {
+async function spawnEventHandler(flag) {
   // TODO: Spawn Python desktop app
+
+  // Get control pointsd
   const existsEvent = true;
   const mockEvents = ["rebase", "retraso"];
   let random = Math.random();
