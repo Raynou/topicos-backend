@@ -49,7 +49,7 @@ async function createLectura(req, res) {
  * @param {Response} res
  */
 async function test(req, res) {
-  console.log("Este wey envió una ruta al controlador de la lectura");
+  console.log("Test req in Lectura's controller");
   await service.testService();
   res.end();
 }
