@@ -36,6 +36,7 @@ async function spawnEventHandler(flag) {
 
   // Get control pointsd
   const existsEvent = true;
+  ws.send("Lectura");
   const mockEvents = ["rebase", "retraso"];
   let random = Math.random();
 
