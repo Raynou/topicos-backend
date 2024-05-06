@@ -36,7 +36,20 @@ async function spawnEventHandler(flag) {
 
   // Get control pointsd
   const existsEvent = true;
-  ws.send("Lectura");
+  const mockDataForSammy = {
+    vehicles: {
+      id: ["v0", "v1", "v2"],
+      lat: [19.359377728478943, 19.359377728478943, 19.359377728478943],
+      lng: [-99.16335342077437, -99.16335342077437, -99.16335342077437],
+    },
+    checkpoints: {
+      id: ["cp0", "cp1", "cp2"],
+      lat: [19.359377728478943, 19.359377728478943, 19.359377728478943],
+      lng: [-99.16335342077437, -99.16335342077437, -99.16335342077437],
+    },
+    threshold: 0.1,
+  };
+  ws.send(JSON.stringify(mockDataForSammy));
   const mockEvents = ["rebase", "retraso"];
   let random = Math.random();
 
