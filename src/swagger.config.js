@@ -8,7 +8,7 @@ const swaggerDefinition = {
     version: "1.0.0",
     description: "API REST para el proyecto de la materia de TSIN",
   },
-  host: "localhost:3000",
+  host: process.env.MAIN_URL || "localhost:3000",
   basePath: "/v1",
 };
 

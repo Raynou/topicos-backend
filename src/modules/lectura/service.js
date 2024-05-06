@@ -34,7 +34,7 @@ async function testService() {
 async function spawnEventHandler(flag) {
   // TODO: Spawn Python desktop app
 
-  // Get control pointsd
+  // Get control points
   const existsEvent = true;
   const mockDataForSammy = {
     vehicles: {

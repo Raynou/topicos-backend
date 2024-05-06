@@ -3,6 +3,13 @@ const router = require("./routes.js");
 const cors = require("cors");
 const morgan = require("morgan");
 
+// Handle exceptions
+process.on("uncaughtException", (err) => {
+  if (err.code === "ECONNREFUSED") {
+    console.error("Failed connection to WS Server");
+  }
+});
+
 const app = express();
 const NODE_ENV = process.env.NODE_ENV;
 const PORT = process.env.PORT || 3000;
