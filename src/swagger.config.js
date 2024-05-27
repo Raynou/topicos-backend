@@ -3,13 +3,18 @@ const swaggerJSDoc = require("swagger-jsdoc");
 
 // Swagger definition
 const swaggerDefinition = {
+  openapi: "3.0.0",
   info: {
     title: "TSIN REST API",
     version: "1.0.0",
     description: "API REST para el proyecto de la materia de TSIN",
   },
-  host: process.env.MAIN_URL || "localhost:3000",
-  basePath: "/v1",
+  servers: [
+    {
+      url: `http://${process.env.MAIN_URL || "localhost:3000"}/v1`,
+    },
+  ],
+
 };
 
 const options = {
