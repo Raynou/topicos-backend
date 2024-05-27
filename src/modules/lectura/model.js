@@ -35,6 +35,10 @@ class LECTURA extends Sequelize.Model {
     aceleracion: {
       type: DataTypes.STRING(255),
       allowNull: false
+    },
+    fecha: {
+      type: DataTypes.DATE,
+      allowNull: false
     }
   }, {
     sequelize,
