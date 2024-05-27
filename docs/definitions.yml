@@ -1,121 +1,159 @@
-definitions:
+components:
+  schemas:
+    Ruta:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 1
+          description: La id de la ruta
+        nombre:
+          type: string
+          example: Nombre de la ruta
+          description: El nombre de la ruta
+        punto_inicial_lat:
+          type: string
+          example: 10.1230
+          description: La latitud del punto inicial
+        punto_inicial_lon:
+          type: string
+          example: 9.1152
+          description: La longitud del punto inicial
+        punto_final_lat:
+          type: string
+          example: 23.0911
+          description: La latitud del punto final
+        punto_final_lon:
+          type: string
+          example: 98.1700
+          description: La longitud del punto final
 
-  Ruta:
-    type: object
-    properties:
-      id:
-        type: string
-        example: 1
-        description: La id de la ruta
-      nombre:
-        type: string
-        example: Nombre de la ruta
-        description: El nombre de la ruta
-      punto_inicial_lat:
-        type: string
-        example: 10.1230
-        description: La latitud del punto inicial
-      punto_inicial_lon:
-        type: string
-        example: 9.1152
-        description: La longitud del punto inicial
-      punto_final_lat:
-        type: string
-        example: 23.0911
-        description: La latitud del punto final
-      punto_final_lon:
-        type: string
-        example: 98.1700
-        description: La longitud del punto final
+    NewRuta:
+      type: object
+      properties:
+        nombre:
+          type: string
+          example: Tampico Playa
+          description: El nombre de la ruta
+        punto_inicial_lat:
+          type: string
+          example: 19.4326
+          description: La latitud del punto inicial
+        punto_inicial_lon:
+          type: string
+          example: -99.1332
+          description: La longitud del punto inicial
+        punto_final_lat:
+          type: string
+          example: 19.4345
+          description: La latitud del punto final
+        punto_final_lon:
+          type: string
+          example: -99.1418
+          description: La longitud del punto final
 
-  NewRuta:
-    type: object
-    properties:
-      nombre:
-        type: string
-        example: Tampico Playa
-        description: El nombre de la ruta
-      punto_inicial_lat:
-        type: string
-        example: 19.4326
-        description: La latitud del punto inicial
-      punto_inicial_lon:
-        type: string
-        example: -99.1332
-        description: La longitud del punto inicial
-      punto_final_lat:
-        type: string
-        example: 19.4345
-        description: La latitud del punto final
-      punto_final_lon:
-        type: string
-        example: -99.1418
-        description: La longitud del punto final
+    PuntoDeControl:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 1
+          description: La id del punto de control
+        ruta: 
+          type: string
+          example: 1
+          description: La id de la ruta a la que pertenece el punto de control.
+        latitud: 
+          type: string
+          example: 19.2100
+          description: La latitud del punto de control.
+        longitud:
+          type: string
+          example: 98.1167
+          description: La longitud del punto de control.
 
-  PuntoDeControl:
-    type: object
-    properties:
-      id:
-        type: string
-        example: 1
-        description: La id del punto de control
-      ruta: 
-        type: string
-        example: 1
-        description: La id de la ruta a la que pertenece el punto de control.
-      latitud: 
-        type: string
-        example: 19.2100
-        description: La latitud del punto de control.
-      longitud:
-        type: string
-        example: 98.1167
-        description: La longitud del punto de control.
+    NewPuntoDeControl:
+      type: object
+      properties:
+        ruta: 
+          type: string
+          example: 1
+          description: La id de la ruta a la que pertenece el punto de control.
+        latitud: 
+          type: string
+          example: 19.2100
+          description: La latitud del punto de control.
+        longitud:
+          type: string
+          example: 56.0000
+          description: La longitud del punto de control.
 
-  NewPuntoDeControl:
-    type: object
-    properties:
-      ruta: 
-        type: string
-        example: 1
-        description: La id de la ruta a la que pertenece el punto de control.
-      latitud: 
-        type: string
-        example: 19.2100
-        description: La latitud del punto de control.
-      longitud:
-        type: string
-        example: 56.0000
-        description: La longitud del punto de control.
+    Lectura:
+      type: object
+      properties:
+        arduino:
+          type: string
+          example: 1
+          description: El ID del arduino que toma la lectura.
+        latitud:
+          type: string
+          example: 78.9167
+          description: La latitud tomada por el arduino (4 valores como máximo después del punto decimal).
+        longitud:
+          type: string
+          example: 34.5410
+          description: La longitud tomada por el arduino (4 valores como máximo después del punto decimal).
+        rotacion:
+          type: string
+          example: 11.1111
+          description: La rotación tomada por el arduino (4 valores como máximo después del punto decimal).
+        aceleracion:
+          type: string
+          example: 18.1111
+          description: La aceleración tomada por el arduino (4 valores como máximo después del punto decimal).
 
-  Lectura:
-    type: object
-    properties:
-      arduino:
-        type: string
-        example: 1
-        description: El ID del arduino que toma la lectura.
-      latitud:
-        type: string
-        example: 78.9167
-        description: La latitud tomada por el arduino (4 valores como máximo después del punto decimal).
-      longitud:
-        type: string
-        example: 34.5410
-        description: La longitud tomada por el arduino (4 valores como máximo después del punto decimal).
-      rotacion:
-        type: string
-        example: 11.1111
-        description: La rotación tomada por el arduino (4 valores como máximo después del punto decimal).
-      aceleracion:
-        type: string
-        example: 18.1111
-        description: La aceleración tomada por el arduino (4 valores como máximo después del punto decimal).
+    Vuelta:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 1
+          description: La id de la vuelta.
+        arduino:
+          type: string
+          example: 1
+          description: El ID del arduino que realizó la vuelta.
+        fecha:
+          type: string
+          example: 2021-05-12
+          description: La fecha en la que se realizó la vuelta.
 
-  Error:
-    type: object
-    properties:
-      mensaje:
-        type: string
-        example: Este es un mensaje de error
-        description: Mensaje de error detallando el problema.
+    VueltaTiempo:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 1
+          description: La id de la vuelta.
+        arduino:
+          type: string
+          example: 1
+          description: El ID del arduino que realizó la vuelta.
+        fecha:
+          type: string
+          example: 2021-05-12
+          description: La fecha en la que se realizó la vuelta.
+        tiempo:
+          type: array
+          example: [10:00, 34:00, 12:00]
+          description: Los tiempos en los que ese arduino se hizo en esa vuelta.
+          items:
+            type: string
+
+    Error:
+      type: object
+      properties:
+        mensaje:
+          type: string
+          example: Este es un mensaje de error
+          description: Mensaje de error detallando el problema.

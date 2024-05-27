@@ -1,106 +1,127 @@
 paths:
-
   /ruta:
-
     get:
       summary: Obtiene una lista de todas las rutas existentes
       description: Devuelve una lista de todas las rutas en la base de datos
       tags:
         - Ruta
-      produces:
-        - application/json
       responses:
         200:
           description: Una lista de objetos de tipo ruta
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Ruta'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ruta'
         400:
           description: Un objeto con un mensaje de error
-          schema:
-            $ref: '#/definitions/Error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         500:
           description: Un objeto con un mensaje de error
-          schema:
-            $ref: '#/definitions/Error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
     post:
       summary: Crea una ruta
       description: Crea una ruta
       tags:
         - Ruta
-      consumes:
-        - application/json
-      parameters:
-        - in: body
-          name: Ruta
-          description: Un objeto representando a una nueva ruta
-          required: true
-          schema:
-            $ref: '#/definitions/NewRuta'
-      produces:
-        - application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewRuta'
       responses:
         201:
-          description: Respuesta vacía. Recurso creado
+          description: Recurso creado. Devuelve la id de la ruta creada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 1
         400:
           description: Un objeto con un mensaje de error
-          schema:
-            $ref: '#/definitions/Error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
     put:
       summary: Modifica una ruta existente
       description: Recibe un objeto JSON que representa una ruta existente con valores actualizados (menos su ID).
       tags:
         - Ruta
-      produces:
-        - application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewRuta'
       responses:
         204:
           description: Respuesta vacía. Recurso actualizado
         400:
           description: Un objeto con un mensaje de error
-          schema:
-            $ref: '#/definitions/Error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
     delete:
       summary: Elimina una ruta
-      description: Elimina la ruta con la ID especifica en el path de la url
+      description: Elimina la ruta con la ID especifica en el path de la URL
       tags:
         - Ruta
       parameters:
         - in: path
-          name: Id de la ruta
+          name: id
           required: true
-      produces:
-        - application/json
+          schema:
+            type: string
+          description: Id de la ruta
       responses:
         204:
           description: Respuesta vacía
         400:
           description: Un objeto con un mensaje detallando un error
-          schema:
-            $ref: '#/definitions/Error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
   /ruta/{id}:
     get:
       summary: Obtiene una ruta por su ID
-      description: Retorna un objeto de la ruta con la id especificada en la url
+      description: Retorna un objeto de la ruta con la id especificada en la URL
       tags:
         - Ruta
       parameters:
         - in: path
-          name: Id de la ruta
+          name: id
           required: true
-      produces:
-        - application/json
+          schema:
+            type: string
+          description: Id de la ruta
       responses:
         200:
           description: Un objeto con la ruta requerida
-          schema:
-            $ref: '#/definitions/Ruta'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ruta'
         400:
           description: Un objeto con un mensaje de error
-          schema:
-            $ref: '#/definitions/Error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'

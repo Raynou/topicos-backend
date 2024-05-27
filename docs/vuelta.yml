@@ -1,0 +1,47 @@
+paths:
+  /vuelta:
+    get:
+      summary: Obtiene vueltas
+      description: Devuelve todas las vueltas y tiempos dados por un arduino en una fecha determinada. Si no se le proporciona ningún parámetro, devolverá todas las vueltas en la base de datos.
+      tags:
+        - Vuelta
+      parameters:
+        - in: query
+          name: arduino
+          schema:
+            type: string
+            example: "1"
+          description: El ID del arduino que realizó la vuelta.
+        - in: query
+          name: fecha
+          schema:
+            type: string
+            format: date
+            example: "2021-05-12"
+          description: La fecha en la que se realizó la vuelta.
+      responses:
+        200:
+          description: Una lista de vueltas o una lista de vueltas de un arduino con sus tiempos en una fecha.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/Vuelta"
+                  - $ref: "#/components/schemas/VueltaTiempo"
+              examples:
+                Vuelta:
+                  value:
+                    - id: "1"
+                      arduino: "1"
+                      fecha: "2021-05-12"
+                VueltaTiempo:
+                  value:
+                    - id: "1"
+                      arduino: "1"
+                      tiempo: [10:12, 12:34, 14:56]
+        500:
+          description: Error interno del servidor cometido al momento de hacer la petición HTTP.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
