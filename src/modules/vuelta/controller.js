@@ -1,42 +1,36 @@
 const { Request, Response } = require("express");
+const vueltaSertvice = require("./service");
+const tiempoService = require("../tiempo/service");
 
 /**
  * @param {Request} req
  * @param {Response} res
  */
 async function getVueltas(req, res) {
-  res.send({
-    datos: [
-      {
-        camion: 1,
-        num_vuelta: 1,
-        fecha: "2024-05-01",
-        tiempo_vuelta: "10:30",
-        tiempos: ["10:30", "10:35", "10:40"],
-      },
-      {
-        camion: 2,
-        num_vuelta: 1,
-        fecha: "2024-05-01",
-        tiempo_vuelta: "11:00",
-        tiempos: ["11:00", "11:05", "11:10"],
-      },
-      {
-        camion: 1,
-        num_vuelta: 2,
-        fecha: "2024-05-02",
-        tiempo_vuelta: "09:30",
-        tiempos: ["09:30", "09:35", "09:40"],
-      },
-      {
-        camion: 2,
-        num_vuelta: 2,
-        fecha: "2024-05-02",
-        tiempo_vuelta: "10:00",
-        tiempos: ["10:00", "10:05", "10:10"],
-      },
-    ],
-  });
+  let resBody = {};
+  if (req.query.arduino && req.query.fecha) {
+    const id = req.query.arduino;
+    const date = req.query.fecha; // Format "YYYY-MM-DD"
+    console.log(id, date);
+    const laps = await vueltaSertvice.findAllVueltasByArduinoIdAndDate(
+      id,
+      date
+    );
+    const buffer = [];
+    for(let i = 0; i < laps.length; i++){
+      const times = await tiempoService.findTiempoByVueltaId(laps[i].id);
+      laps[i].tiempos = [];
+      for(let j = 0; j < times.length; j++){
+        laps[i].tiempos.push(times[j].tiempo);
+      }
+      buffer.push(laps[i]);
+    }
+    // Add buffer to response body
+    resBody.datos = buffer;
+  } else {
+    resBody = await vueltaSertvice.findAllVueltas();
+  }
+  res.send(resBody);
 }
 
 module.exports = {
