@@ -9,12 +9,13 @@ async function findAllRutas() {
 
 async function findRutaById(id) {
   const response = await models.RUTA.findByPk(id);
-  const ruta = response.dataValues;
+  const ruta = response?.dataValues ?? {};
   return ruta;
 }
 
 async function createRuta(ruta) {
-  await models.RUTA.create(ruta);
+  const id = await models.RUTA.create(ruta);
+  return id;
 }
 
 async function updateRuta(ruta) {
