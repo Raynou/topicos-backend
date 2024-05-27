@@ -27,14 +27,22 @@ async function getLecturaById(req, res) {
 async function createLectura(req, res) {
   try {
     const body = req.body;
-    const fields = ["arduino", "latitud", "longitud", "rotacion", "aceleracion"];
-    fields.forEach(field => {
-      if(!body[field]) {
+    const fields = [
+      "arduino",
+      "latitud",
+      "longitud" /*, "rotacion", "aceleracion"*/,
+    ];
+    fields.forEach((field) => {
+      if (!body[field]) {
         throw new NoFieldProvided(field);
       }
     });
-    await service.createLectura(req.body);
-    res.sendStatus(201);
+    const id = await service.createLectura(req.body);
+    res.status(201);
+    res.json({
+      id: id,
+    });
+    res.end();
   } catch (e) {
     res.status(400);
     res.json({
