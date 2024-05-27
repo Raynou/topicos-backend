@@ -1,5 +1,5 @@
-const { sequelize } = require('../connection.js');
-const models = require("../models/init-models.js").initModels(sequelize);
+const { sequelize } = require('../../connection.js');
+const models = require("../../shared/init-models.js").initModels(sequelize);
 
 async function findAllArduinos() {
   const response = await models.ARDUINO.findAll();
