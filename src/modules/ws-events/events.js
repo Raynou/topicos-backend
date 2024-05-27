@@ -62,10 +62,10 @@ const setupWsEvents = (ws) => {
     const route = 1;
 
     const buses = await arduinoService.findAllArduinos();
-    const treeshold = await rutaService.findRutaById(route)?.treeshold ?? 0;
+    const treeshold = (await rutaService.findRutaById(route)?.treeshold) ?? 0;
     const checkpoints = await pdcService.findPuntoDeControlByRuta(route);
 
-    if(!buses || !treeshold || !checkpoints) {
+    if (!buses || !treeshold || !checkpoints) {
       return;
     }
 
@@ -73,7 +73,7 @@ const setupWsEvents = (ws) => {
       await lecturaService.findAllLecturasByArduinoId(bus.id).pop();
     });
 
-    if(!allBusesPosition) {
+    if (!allBusesPosition) {
       return;
     }
 
@@ -97,14 +97,12 @@ const setupWsEvents = (ws) => {
   /**
    * Send a snapshot of the data to the desktop app every 30 seconds.
    */
-  setInterval(async () => {
-    const data = await getData();
-    if(!data) {
-      console.log("No information in the database for the desktop app")
-      return;
-    }
-    ws.send(JSON.stringify(data));
-  }, 30000); // 30 seconds
+  if (process.env.SEND_SNAPSHOT === "true") {
+    setInterval(async () => {
+      const data = await getData();
+      ws.send(JSON.stringify(data));
+    }, 30000);
+  }
 };
 
 module.exports = {

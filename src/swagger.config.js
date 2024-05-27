@@ -11,7 +11,7 @@ const swaggerDefinition = {
   },
   servers: [
     {
-      url: `${process.env.MAIN_URL || "localhost:3000"}/v1`,
+      url: `${process.env.MAIN_URL || "http://localhost:3000"}/v1`,
     },
   ],
 
