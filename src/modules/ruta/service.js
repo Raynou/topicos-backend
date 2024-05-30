@@ -14,8 +14,8 @@ async function findRutaById(id) {
 }
 
 async function createRuta(ruta) {
-  const id = await models.RUTA.create(ruta);
-  return id;
+  const newRuta = await models.RUTA.create(ruta);
+  return newRuta.id;
 }
 
 async function updateRuta(ruta) {
@@ -25,7 +25,7 @@ async function updateRuta(ruta) {
 }
 
 async function deleteRuta(id) {
-  const ruta = await findPuntoDeControlById(id);
+  const ruta = await models.RUTA.findByPk(id);
   ruta.destroy();
 }
 

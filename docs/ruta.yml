@@ -13,19 +13,19 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Ruta'
+                  $ref: "#/components/schemas/Ruta"
         400:
           description: Un objeto con un mensaje de error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         500:
           description: Un objeto con un mensaje de error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
     post:
       summary: Crea una ruta
@@ -37,7 +37,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewRuta'
+              $ref: "#/components/schemas/NewRuta"
       responses:
         201:
           description: Recurso creado. Devuelve la id de la ruta creada
@@ -47,14 +47,14 @@ paths:
                 type: object
                 properties:
                   id:
-                    type: string
+                    type: number
                     example: 1
         400:
           description: Un objeto con un mensaje de error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
     put:
       summary: Modifica una ruta existente
@@ -66,7 +66,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewRuta'
+              $ref: "#/components/schemas/NewRuta"
       responses:
         204:
           description: Respuesta vacía. Recurso actualizado
@@ -75,29 +75,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-
-    delete:
-      summary: Elimina una ruta
-      description: Elimina la ruta con la ID especifica en el path de la URL
-      tags:
-        - Ruta
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: string
-          description: Id de la ruta
-      responses:
-        204:
-          description: Respuesta vacía
-        400:
-          description: Un objeto con un mensaje detallando un error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
   /ruta/{id}:
     get:
@@ -118,10 +96,31 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Ruta'
+                $ref: "#/components/schemas/Ruta"
         400:
           description: Un objeto con un mensaje de error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
+    delete:
+      summary: Elimina una ruta
+      description: Elimina la ruta con la ID especifica en el path de la URL
+      tags:
+        - Ruta
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Id de la ruta
+      responses:
+        204:
+          description: Respuesta vacía
+        400:
+          description: Un objeto con un mensaje detallando un error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"

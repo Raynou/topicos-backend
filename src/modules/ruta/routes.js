@@ -7,6 +7,6 @@ router.getAsync("/", controller.getRutas);
 router.getAsync("/:id", controller.getRutaById);
 router.postAsync("/", controller.createRuta);
 router.putAsync("/", controller.updateRuta);
-router.delete("/", controller.deleteRuta);
+router.delete("/:id", controller.deleteRuta);
 
 module.exports = router;

@@ -4,54 +4,29 @@ components:
       type: object
       properties:
         id:
-          type: string
+          type: number
           example: 1
           description: La id de la ruta
         nombre:
           type: string
           example: Nombre de la ruta
           description: El nombre de la ruta
-        punto_inicial_lat:
+        umbral:
           type: string
-          example: 10.1230
-          description: La latitud del punto inicial
-        punto_inicial_lon:
-          type: string
-          example: 9.1152
-          description: La longitud del punto inicial
-        punto_final_lat:
-          type: string
-          example: 23.0911
-          description: La latitud del punto final
-        punto_final_lon:
-          type: string
-          example: 98.1700
-          description: La longitud del punto final
+          example: 10
+          description: Umbral de la ruta, representa la ditancia mínima para calcular rebasos y detección de puntos de control.
 
     NewRuta:
       type: object
       properties:
         nombre:
-          type: string
+          type: number
           example: Tampico Playa
           description: El nombre de la ruta
-        punto_inicial_lat:
+        umbral:
           type: string
-          example: 19.4326
-          description: La latitud del punto inicial
-        punto_inicial_lon:
-          type: string
-          example: -99.1332
-          description: La longitud del punto inicial
-        punto_final_lat:
-          type: string
-          example: 19.4345
-          description: La latitud del punto final
-        punto_final_lon:
-          type: string
-          example: -99.1418
-          description: La longitud del punto final
-
+          example: 10
+          description: Umbral de la ruta, representa la ditancia mínima para calcular rebasos y detección de puntos de control.
     PuntoDeControl:
       type: object
       properties:

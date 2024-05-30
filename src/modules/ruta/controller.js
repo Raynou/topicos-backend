@@ -14,7 +14,7 @@ async function getRutas(req, res) {
     // TODO: conseguir hacer la distinción entre un 400 y un 500
     res.status(500);
     res.json({
-        mensaje: error.message
+      mensaje: error.message,
     });
     res.end();
   }
@@ -36,20 +36,14 @@ async function getRutaById(req, res) {
 async function createRuta(req, res) {
   try {
     const body = req.body;
-    const fields = [
-      "nombre",
-      "punto_inicial_lat",
-      "punto_inicial_lon",
-      "punto_final_lat",
-      "punto_final_lon",
-    ];
+    const fields = ["nombre", "umbral"];
     fields.forEach((field) => {
       if (!body[field]) {
         throw new NoFieldProvided(field);
       }
     });
-    await service.createRuta(req.body);
-    res.sendStatus(201);
+    const id = await service.createRuta(req.body);
+    res.status(201).json({ id: id }).end();
   } catch (e) {
     res.status(400);
     res.json({
@@ -79,10 +73,15 @@ async function updateRuta(req, res) {
  */
 async function deleteRuta(req, res) {
   try {
-    await service.deleteRuta(req.body.id);
+    await service.deleteRuta(req.params.id);
     res.sendStatus(204);
   } catch (error) {
-    res.sendStatus(400);
+    res
+      .json({
+        error: error.message,
+      })
+      .status(400)
+      .end();
   }
 }
 
