@@ -17,8 +17,6 @@ CREATE TABLE IF NOT EXISTS LECTURA(
     arduino                     INT NOT NULL,                     -- Id del arduino asociado
     latitud                     VARCHAR(255) NOT NULL,            -- Latitud de la lectura
     longitud                    VARCHAR(255) NOT NULL,            -- Longitud de la lectura
-    rotacion                    VARCHAR(255) NOT NULL,            -- Rotación del camión
-    aceleracion                 VARCHAR(255) NOT NULL,            -- Aceleración del camión
     fecha                       DATETIME NOT NULL                 -- Fecha de la lectura, incluye hora, minuto y segundo
 );
 
@@ -86,8 +84,6 @@ ALTER TABLE LECTURA MODIFY COLUMN id INT COMMENT 'Id de la lectura';
 ALTER TABLE LECTURA MODIFY COLUMN arduino INT NOT NULL COMMENT 'Id del arduino asociado';
 ALTER TABLE LECTURA MODIFY COLUMN latitud VARCHAR(255) NOT NULL COMMENT 'Latitud de la lectura';
 ALTER TABLE LECTURA MODIFY COLUMN longitud VARCHAR(255) NOT NULL COMMENT 'Longitud de la lectura';
-ALTER TABLE LECTURA MODIFY COLUMN rotacion VARCHAR(255) NOT NULL COMMENT 'Rotación del camión';
-ALTER TABLE LECTURA MODIFY COLUMN aceleracion VARCHAR(255) NOT NULL COMMENT 'Aceleración del camión';
 ALTER TABLE LECTURA MODIFY COLUMN fecha DATETIME NOT NULL COMMENT 'Fecha de la lectura, incluye hora, minuto y segundo';
 
 -- RUTA
@@ -103,6 +99,7 @@ ALTER TABLE PUNTO_DE_CONTROL MODIFY COLUMN ruta INT NOT NULL COMMENT 'Id de la r
 ALTER TABLE PUNTO_DE_CONTROL MODIFY COLUMN latitud VARCHAR(255) NOT NULL COMMENT 'Latitud del punto de control';
 ALTER TABLE PUNTO_DE_CONTROL MODIFY COLUMN longitud VARCHAR(255) NOT NULL COMMENT 'Longitud del punto de control';
 ALTER TABLE PUNTO_DE_CONTROL MODIFY COLUMN tipo ENUM('INICIO', 'NORMAL') NOT NULL COMMENT 'Tipo del punto de control, solo puede haber un inicio por ruta';
+ALTER TABLE PUNTO_DE_CONTROL MODIFY COLUMN posicion INT NOT NULL COMMENT 'La posción del punto de control en la ruta';
 ALTER TABLE PUNTO_DE_CONTROL MODIFY COLUMN tiempo_esperado VARCHAR(255) NOT NULL COMMENT 'La cantidad esperada de tiempo en el que el autbús debe pasar por el punto de control';
 
 -- VUELTA
@@ -140,3 +137,10 @@ ALTER TABLE TIEMPO MODIFY COLUMN tiempo VARCHAR(255) NOT NULL COMMENT 'La cantid
 
 -- Change the name of tiempo to tiempo_esperado in PUNTO_DE_CONTROL
 -- ALTER TABLE PUNTO_DE_CONTROL CHANGE COLUMN tiempo tiempo_esperado VARCHAR(255) NOT NULL;
+
+-- Remove ROTACION and ACELERACION from LECTURA
+-- ALTER TABLE LECTURA DROP COLUMN rotacion;
+-- ALTER TABLE LECTURA DROP COLUMN aceleracion;
+
+-- Add posicion to PUNTO_DE_CONTROL
+-- ALTER TABLE PUNTO_DE_CONTROL ADD COLUMN posicion INT NOT NULL;

@@ -34,11 +34,11 @@ components:
           type: string
           example: 1
           description: La id del punto de control
-        ruta: 
+        ruta:
           type: string
           example: 1
           description: La id de la ruta a la que pertenece el punto de control.
-        latitud: 
+        latitud:
           type: string
           example: 19.2100
           description: La latitud del punto de control.
@@ -46,15 +46,23 @@ components:
           type: string
           example: 98.1167
           description: La longitud del punto de control.
+        posicion:
+          type: string
+          example: 1
+          description: La posición del punto de control en la ruta.
+        tipo:
+          type: string
+          example: "INICIO"
+          description: El tipo de punto de control. Puede tener solo dos valores 'INICIO' o 'FIN'.
 
     NewPuntoDeControl:
       type: object
       properties:
-        ruta: 
+        ruta:
           type: string
           example: 1
           description: La id de la ruta a la que pertenece el punto de control.
-        latitud: 
+        latitud:
           type: string
           example: 19.2100
           description: La latitud del punto de control.
@@ -62,6 +70,14 @@ components:
           type: string
           example: 56.0000
           description: La longitud del punto de control.
+        posicion:
+          type: string
+          example: 1
+          description: La posición del punto de control en la ruta.
+        tipo:
+          type: string
+          example: "INICIO"
+          description: El tipo de punto de control. Puede tener solo dos valores 'INICIO' o 'FIN'.
 
     Lectura:
       type: object
@@ -78,14 +94,6 @@ components:
           type: string
           example: 34.5410
           description: La longitud tomada por el arduino (4 valores como máximo después del punto decimal).
-        rotacion:
-          type: string
-          example: 11.1111
-          description: La rotación tomada por el arduino (4 valores como máximo después del punto decimal).
-        aceleracion:
-          type: string
-          example: 18.1111
-          description: La aceleración tomada por el arduino (4 valores como máximo después del punto decimal).
 
     Vuelta:
       type: object

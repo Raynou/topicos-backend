@@ -38,5 +38,13 @@ START TRANSACTION;
     INSERT INTO TIEMPO (vuelta, fecha, tiempo) VALUES (2, '2021-06-01 10:30:00', '119312123');
 COMMIT;
 
+-- Readings
+START TRANSACTION;
+    INSERT INTO LECTURA (arduino, latitud, longitud, fecha) VALUES (1, '19.4326', '-99.1332', '2021-06-01 10:00:00');
+    INSERT INTO LECTURA (arduino, latitud, longitud, fecha) VALUES (1, '19.4326', '-99.1332', '2021-06-01 10:01:00');
+    INSERT INTO LECTURA (arduino, latitud, longitud, fecha) VALUES (1, '19.4326', '-99.1332', '2021-06-01 10:02:00');
+    INSERT INTO LECTURA (arduino, latitud, longitud, fecha) VALUES (1, '19.4326', '-99.1332', '2021-06-01 10:03:00');
+COMMIT;
+
 -- En caso de error descomente y ejecute la línea inferior 
 -- ROLLBACK;
