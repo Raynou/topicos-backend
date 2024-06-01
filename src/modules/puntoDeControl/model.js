@@ -35,6 +35,10 @@ class PUNTO_DE_CONTROL extends Sequelize.Model {
     tiempo_esperado: {
       type: DataTypes.STRING(255),
       allowNull: false
+    },
+    posicion: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   }, {
     sequelize,

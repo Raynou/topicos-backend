@@ -46,6 +46,10 @@ components:
           type: string
           example: 98.1167
           description: La longitud del punto de control.
+        tiempo_esperado:
+          type: string
+          example: 10:00
+          description: El tiempo esperado para llegar al punto de control.
         posicion:
           type: string
           example: 1
@@ -70,6 +74,10 @@ components:
           type: string
           example: 56.0000
           description: La longitud del punto de control.
+        tiempo_esperado:
+          type: string
+          example: 10:00
+          description: El tiempo esperado para llegar al punto de control.
         posicion:
           type: string
           example: 1

@@ -10,6 +10,9 @@ async function findAllLecturas() {
 
 async function findLecturaById(id) {
   const response = await models.LECTURA.findByPk(id);
+  if(response === null) {
+    throw new Error("Lectura not found");
+  }
   const lectura = response.dataValues;
   return lectura;
 }
@@ -37,6 +40,7 @@ async function testService() {
 module.exports = {
   findAllLecturas,
   findAllLecturasByArduinoId,
+  findLecturaById,
   createLectura,
   testService,
 };

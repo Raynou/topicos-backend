@@ -13,13 +13,13 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/PuntoDeControl'
+                  $ref: "#/components/schemas/PuntoDeControl"
         500:
           description: Un objeto con mensaje de error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
     post:
       summary: Crea un punto de control
@@ -31,7 +31,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewPuntoDeControl'
+              $ref: "#/components/schemas/NewPuntoDeControl"
       responses:
         201:
           description: Punto de control creado exitosamente
@@ -40,7 +40,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
     put:
       summary: Actualiza un punto de control
@@ -52,7 +52,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PuntoDeControl'
+              $ref: "#/components/schemas/PuntoDeControl"
       responses:
         204:
           description: Respuesta vacía
@@ -61,29 +61,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-
-    delete:
-      summary: Elimina un punto de control
-      description: Elimina un punto de control de una ruta
-      tags:
-        - Punto de control
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: string
-          description: Id del punto de control
-      responses:
-        204:
-          description: Respuesta vacía
-        400:
-          description: Un objeto con mensaje de error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
   /puntoDeControl/{id}:
     get:
@@ -104,10 +82,31 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PuntoDeControl'
+                $ref: "#/components/schemas/PuntoDeControl"
         400:
           description: Un objeto con un mensaje de error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
+    delete:
+      summary: Elimina un punto de control
+      description: Elimina un punto de control de una ruta
+      tags:
+        - Punto de control
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Id del punto de control
+      responses:
+        204:
+          description: Respuesta vacía
+        400:
+          description: Un objeto con mensaje de error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"

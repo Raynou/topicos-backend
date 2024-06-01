@@ -16,8 +16,16 @@ async function getLectura(req, res) {
  * @param {Response} res
  */
 async function getLecturaById(req, res) {
-  const lectura = await service.findLecturaById(req.params.id);
-  res.send(lectura);
+  try {
+    const lectura = await service.findLecturaById(req.params.id);
+    res.send(lectura);
+  } catch (error) {
+    res.status(404);
+    res.json({
+      mensaje: error.message,
+    });
+    res.end();
+  }
 }
 
 /**

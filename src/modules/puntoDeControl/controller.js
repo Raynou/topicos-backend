@@ -32,7 +32,14 @@ async function getPuntoDeControlByID(req, res) {
 async function createPuntoDeControl(req, res) {
   try {
     const body = req.body;
-    const fields = ["ruta", "latitud", "longitud"];
+    const fields = [
+      "ruta",
+      "latitud",
+      "longitud",
+      "tiempo_esperado",
+      "posicion",
+      "tipo",
+    ];
     fields.forEach((field) => {
       if (!body[field]) {
         throw new NoFieldProvided(field);
@@ -73,7 +80,7 @@ async function updatePuntoDeControl(req, res) {
  */
 async function deletePuntoDeControl(req, res) {
   try {
-    await service.deletePuntoDeControl(req.body.id);
+    await service.deletePuntoDeControl(req.params.id);
     res.sendStatus(204);
   } catch (error) {
     res.sendStatus(400);

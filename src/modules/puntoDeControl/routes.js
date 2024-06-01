@@ -7,6 +7,6 @@ router.getAsync("/", controller.getPuntosDeControl);
 router.getAsync("/:id", controller.getPuntoDeControlByID);
 router.postAsync("/", controller.createPuntoDeControl);
 router.putAsync("/", controller.updatePuntoDeControl);
-router.delete("/", controller.deletePuntoDeControl);
+router.deleteAsync("/:id", controller.deletePuntoDeControl);
 
 module.exports = router;

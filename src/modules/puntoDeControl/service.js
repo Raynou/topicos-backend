@@ -24,6 +24,7 @@ async function findPuntoDeControlByRuta(ruta) {
 }
 
 async function createPuntoDeControl(puntoDeControl) {
+  console.log(puntoDeControl);
   await models.PUNTO_DE_CONTROL.create(puntoDeControl);
 }
 
@@ -34,7 +35,7 @@ async function updatePuntoDeControl(puntoDeControl) {
 }
 
 async function deletePuntoDeControl(id) {
-  const puntoDeControl = await findPuntoDeControlById(id);
+  const puntoDeControl = await models.PUNTO_DE_CONTROL.findByPk(id);
   puntoDeControl.destroy();
 }
 
