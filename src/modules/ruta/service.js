@@ -20,7 +20,7 @@ async function createRuta(ruta) {
 
 async function updateRuta(ruta) {
   await models.RUTA.update(ruta, {
-    where: { id: puntoDeControl.id },
+    where: { id: ruta.id },
   });
 }
 

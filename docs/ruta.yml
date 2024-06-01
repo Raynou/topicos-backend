@@ -66,7 +66,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/NewRuta"
+              $ref: "#/components/schemas/Ruta"
       responses:
         204:
           description: Respuesta vacía. Recurso actualizado
