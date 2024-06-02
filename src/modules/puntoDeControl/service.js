@@ -19,7 +19,7 @@ async function findPuntoDeControlByRuta(ruta) {
       ruta: ruta,
     },
   });
-  const puntosDeControl = response.dataValues;
+  const puntosDeControl = response.map((data) => data.dataValues);
   return puntosDeControl;
 }
 

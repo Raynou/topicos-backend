@@ -62,16 +62,20 @@ const setupWsEvents = (ws) => {
     const route = 1;
 
     const buses = await arduinoService.findAllArduinos();
-    const treeshold = (await rutaService.findRutaById(route)?.treeshold) ?? 0;
+    const treeshold = (await rutaService.findRutaById(route)).umbral;
     const checkpoints = await pdcService.findPuntoDeControlByRuta(route);
 
     if (!buses || !treeshold || !checkpoints) {
       return;
     }
 
-    const allBusesPosition = buses.map(async (bus) => {
-      await lecturaService.findAllLecturasByArduinoId(bus.id).pop();
-    });
+    const allBusesPosition = [];
+    
+    for(let i = 0; i < buses.length; i++) {
+      const id = buses[i].id;
+      const res = await lecturaService.findAllLecturasByArduinoId(id);
+      allBusesPosition.push(res.pop());
+    }
 
     if (!allBusesPosition) {
       return;
@@ -88,7 +92,7 @@ const setupWsEvents = (ws) => {
         id: checkpoints.map((checkpoint) => checkpoint.id),
         lat: checkpoints.map((checkpoint) => checkpoint.latitud),
         lng: checkpoints.map((checkpoint) => checkpoint.longitud),
-        times: checkpoints.map((checkpoint) => checkpoint.tiempo),
+        times: checkpoints.map((checkpoint) => checkpoint.tiempo_esperado),
         type: checkpoints.map((checkpoint) => checkpoint.tipo),
       },
     };
@@ -98,10 +102,11 @@ const setupWsEvents = (ws) => {
    * Send a snapshot of the data to the desktop app every 30 seconds.
    */
   if (process.env.SEND_SNAPSHOT === "true") {
+    const time = 30000;
     setInterval(async () => {
       const data = await getData();
       ws.send(JSON.stringify(data));
-    }, 30000);
+    }, time);
   }
 };
 
