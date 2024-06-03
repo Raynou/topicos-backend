@@ -26,16 +26,19 @@ START TRANSACTION;
     -- First lap for unit 1
     INSERT INTO VUELTA (arduino, fecha) VALUES (1, '2021-06-01 10:00:00');
     -- Times for the first lap of unit 1
-    INSERT INTO TIEMPO (vuelta, fecha, tiempo) VALUES (1, '2021-06-01 10:00:00', '34880');
-    INSERT INTO TIEMPO (vuelta, fecha, tiempo) VALUES (1, '2021-06-01 10:05:00', '34880');
-    INSERT INTO TIEMPO (vuelta, fecha, tiempo) VALUES (1, '2021-06-01 10:10:00', '34880');
+    INSERT INTO TIEMPO (vuelta, fecha, tiempo) VALUES (1, '2021-06-01 10:00:00', '10:11');
+    INSERT INTO TIEMPO (vuelta, fecha, tiempo) VALUES (1, '2021-06-01 10:05:00', '12:34');
+    INSERT INTO TIEMPO (vuelta, fecha, tiempo) VALUES (1, '2021-06-01 10:10:00', '23:33');
 
     -- Second lap for unit 1
     INSERT INTO VUELTA (arduino, fecha) VALUES (1, '2021-06-01 10:20:00');
     -- Times for the second lap of unit 1
-    INSERT INTO TIEMPO (vuelta, fecha, tiempo) VALUES (2, '2021-06-01 10:20:00', '1000000');
-    INSERT INTO TIEMPO (vuelta, fecha, tiempo) VALUES (2, '2021-06-01 10:25:00', '21321321');
-    INSERT INTO TIEMPO (vuelta, fecha, tiempo) VALUES (2, '2021-06-01 10:30:00', '119312123');
+    INSERT INTO TIEMPO (vuelta, fecha, tiempo) VALUES (2, '2021-06-01 10:20:00', '02:23');
+    INSERT INTO TIEMPO (vuelta, fecha, tiempo) VALUES (2, '2021-06-01 10:25:00', '13:34');
+    INSERT INTO TIEMPO (vuelta, fecha, tiempo) VALUES (2, '2021-06-01 10:30:00', '15:00');
+
+    -- First lap for unit 2
+    INSERT INTO VUELTA (arduino, fecha) VALUES (2, '2021-06-01 10:00:00');
 COMMIT;
 
 -- Readings
