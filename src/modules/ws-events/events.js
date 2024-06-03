@@ -3,6 +3,7 @@ const arduinoService = require("../arduino/service.js");
 const rutaService = require("../ruta/service.js");
 const vueltaService = require("../vuelta/service.js");
 const lecturaService = require("../lectura/service.js");
+const tiempoService = require("../tiempo/service.js");
 
 /**
  * Save the times of the buses in the database.
@@ -12,6 +13,10 @@ const lecturaService = require("../lectura/service.js");
 const saveTimes = async (ids, times) => {
   for (let i = 0; i < ids.length; i++) {
     const busLastLap = await vueltaService.findLastVueltByArduinoId(ids[i]);
+    // Preventive case for when there are no laps in the database for this arduino
+    if (busLastLap === 0) {
+      return;
+    }
     // Cap the given time in the lap
     const newTime = {
       vuelta: busLastLap.id,
@@ -42,14 +47,18 @@ const createNewLap = async (arduinos) => {
  */
 const setupWsEvents = (ws) => {
   ws.on("message", async (data) => {
-    const message = JSON.parse(data.toString());
-    switch (message) {
-      case message.type === "checkpoint":
-        saveTimes(message.id, message.times);
-        break;
-      case message.type === "vuelta":
-        createNewLap(message.id);
-        break;
+    try {
+      const message = JSON.parse(data.toString());
+      switch (message.type) {
+        case "checkpoint":
+          saveTimes(message.id, message.times);
+          break;
+        case "vuelta":
+          createNewLap(message.id);
+          break;
+      }
+    } catch (error) {
+      console.error(error.message);
     }
   });
 

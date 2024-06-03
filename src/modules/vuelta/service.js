@@ -15,6 +15,9 @@ async function findLastVueltByArduinoId(arduinoId) {
     },
     order: [["fecha", "DESC"]],
   });
+  if(response === null) {
+    return 0; // There are no laps in the database for this arduino yet
+  }
   const vuelta = response.dataValues;
   return vuelta;
 }
