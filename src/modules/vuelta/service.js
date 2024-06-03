@@ -1,5 +1,6 @@
 const { Sequelize, Op } = require("sequelize");
 const { sequelize } = require("../../connection.js");
+const { Result } = require("../../shared/result.js");
 const models = require("../../shared/init-models.js").initModels(sequelize);
 
 async function findAllVueltas() {
@@ -16,10 +17,10 @@ async function findLastVueltByArduinoId(arduinoId) {
     order: [["fecha", "DESC"]],
   });
   if(response === null) {
-    return 0; // There are no laps in the database for this arduino yet
+    return Result.fail(`No laps found for arduino ${arduinoId}`);
   }
   const vuelta = response.dataValues;
-  return vuelta;
+  return Result.success(vuelta);
 }
 
 /**

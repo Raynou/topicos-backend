@@ -12,11 +12,13 @@ const tiempoService = require("../tiempo/service.js");
  */
 const saveTimes = async (ids, times) => {
   for (let i = 0; i < ids.length; i++) {
-    const busLastLap = await vueltaService.findLastVueltByArduinoId(ids[i]);
+    const res = await vueltaService.findLastVueltByArduinoId(ids[i]);
     // Preventive case for when there are no laps in the database for this arduino
-    if (busLastLap === 0) {
+    if (!res.success) {
+      console.error(res.message);
       return;
     }
+    const busLastLap = res.data;
     // Cap the given time in the lap
     const newTime = {
       vuelta: busLastLap.id,
