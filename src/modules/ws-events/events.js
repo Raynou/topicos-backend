@@ -4,6 +4,7 @@ const rutaService = require("../ruta/service.js");
 const vueltaService = require("../vuelta/service.js");
 const lecturaService = require("../lectura/service.js");
 const tiempoService = require("../tiempo/service.js");
+const { WebSocket } = require("ws");
 
 /**
  * Save the times of the buses in the database.
@@ -44,23 +45,50 @@ const createNewLap = async (arduinos) => {
 };
 
 /**
+ * Broadcast a message to all of the clients connected to the websocket server.
+ * @param {*} wss
+ */
+const broadcast = (wss, data, isBinary) => {
+  wss.clients.forEach((client) => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(data, { binary: isBinary });
+    }
+  });
+};
+
+/**
+ * Check if a given string is a valid JSON.
+ * @param {String} str - The string to check.
+ * @returns {Boolean} True if the string is a valid JSON, false otherwise.
+ */
+const isJSON = (str) => {
+  try {
+    JSON.parse(str);
+  } catch (e) {
+    return false;
+  }
+  return true;
+};
+
+/**
  * Setup all of the events for the websocket connection.
  * @param {*} ws - A websocket connection.
+ * @param {*} wss - The websocket server.
  */
-const setupWsEvents = (ws) => {
-  ws.on("message", async (data) => {
-    try {
-      const message = JSON.parse(data.toString());
-      switch (message.type) {
-        case "checkpoint":
-          saveTimes(message.id, message.times);
-          break;
-        case "vuelta":
-          createNewLap(message.id);
-          break;
-      }
-    } catch (error) {
-      console.error(error.message);
+const setupWsEvents = (ws, wss) => {
+  ws.on("message", async (data, isBinary) => {
+    const message = isJSON(data.toString())
+      ? JSON.parse(data.toString())
+      : data.toString();
+    switch (message.type) {
+      case "checkpoint":
+        saveTimes(message.id, message.times);
+        break;
+      case "vuelta":
+        createNewLap(message.id);
+        break;
+      default:
+        broadcast(wss, data, isBinary);
     }
   });
 
@@ -81,8 +109,8 @@ const setupWsEvents = (ws) => {
     }
 
     const allBusesPosition = [];
-    
-    for(let i = 0; i < buses.length; i++) {
+
+    for (let i = 0; i < buses.length; i++) {
       const id = buses[i].id;
       const res = await lecturaService.findAllLecturasByArduinoId(id);
       allBusesPosition.push(res.pop());
