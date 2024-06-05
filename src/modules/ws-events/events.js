@@ -57,29 +57,13 @@ const broadcast = (wss, data, isBinary) => {
 };
 
 /**
- * Check if a given string is a valid JSON.
- * @param {String} str - The string to check.
- * @returns {Boolean} True if the string is a valid JSON, false otherwise.
- */
-const isJSON = (str) => {
-  try {
-    JSON.parse(str);
-  } catch (e) {
-    return false;
-  }
-  return true;
-};
-
-/**
  * Setup all of the events for the websocket connection.
  * @param {*} ws - A websocket connection.
  * @param {*} wss - The websocket server.
  */
 const setupWsEvents = (ws, wss) => {
   ws.on("message", async (data, isBinary) => {
-    const message = isJSON(data.toString())
-      ? JSON.parse(data.toString())
-      : data.toString();
+    const message = JSON.parse(data.toString());
     switch (message.type) {
       case "checkpoint":
         saveTimes(message.id, message.times);
