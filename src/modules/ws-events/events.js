@@ -44,6 +44,18 @@ const createNewLap = async (arduinos) => {
 };
 
 /**
+ * Transform the type of the checkpoint to a number.
+ * @param {*} type
+ */
+const typeToNumber = (type) => {
+  const types = {
+    INICIO: 0,
+    NORMAL: 1,
+  };
+  return types[type];
+};
+
+/**
  * Setup all of the events for the websocket connection.
  * @param {*} ws - A websocket connection.
  */
@@ -81,8 +93,8 @@ const setupWsEvents = (ws) => {
     }
 
     const allBusesPosition = [];
-    
-    for(let i = 0; i < buses.length; i++) {
+
+    for (let i = 0; i < buses.length; i++) {
       const id = buses[i].id;
       const res = await lecturaService.findAllLecturasByArduinoId(id);
       allBusesPosition.push(res.pop());
@@ -96,15 +108,15 @@ const setupWsEvents = (ws) => {
       treeshold: treeshold,
       vehicles: {
         id: buses.map((bus) => bus.id),
-        lat: allBusesPosition.map((bus) => bus.latitud),
-        lng: allBusesPosition.map((bus) => bus.longitud),
+        lat: allBusesPosition.map((bus) => Number(bus.latitud)),
+        lng: allBusesPosition.map((bus) => Number(bus.longitud)),
       },
       checkpoints: {
         id: checkpoints.map((checkpoint) => checkpoint.id),
-        lat: checkpoints.map((checkpoint) => checkpoint.latitud),
-        lng: checkpoints.map((checkpoint) => checkpoint.longitud),
-        times: checkpoints.map((checkpoint) => checkpoint.tiempo_esperado),
-        type: checkpoints.map((checkpoint) => checkpoint.tipo),
+        lat: checkpoints.map((checkpoint) => Number(checkpoint.latitud)),
+        lng: checkpoints.map((checkpoint) => Number(checkpoint.longitud)),
+        times: checkpoints.map((checkpoint) => Number(checkpoint.tiempo_esperado)),
+        type: checkpoints.map((checkpoint) => typeToNumber(checkpoint.tipo)),
       },
     };
     return data;
