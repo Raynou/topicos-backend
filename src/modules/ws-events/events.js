@@ -115,7 +115,7 @@ const setupWsEvents = (ws) => {
         id: checkpoints.map((checkpoint) => checkpoint.id),
         lat: checkpoints.map((checkpoint) => Number(checkpoint.latitud)),
         lng: checkpoints.map((checkpoint) => Number(checkpoint.longitud)),
-        times: checkpoints.map((checkpoint) => Number(checkpoint.tiempo_esperado)),
+        times: checkpoints.map((checkpoint) => checkpoint.tiempo_esperado),
         type: checkpoints.map((checkpoint) => typeToNumber(checkpoint.tipo)),
       },
     };
